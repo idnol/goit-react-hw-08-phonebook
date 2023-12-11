@@ -2,7 +2,7 @@ import { Formik, Form, Field } from 'formik';
 import { useDispatch } from 'react-redux';
 import { postContact } from '../../redux/api';
 
-export const ContactForm = ({submit}) => {
+export const ContactForm = () => {
   const dispatch = useDispatch();
   const addSomeContact = (contact) => {
     dispatch(postContact(contact))
