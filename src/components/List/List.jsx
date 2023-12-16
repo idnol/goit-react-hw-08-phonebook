@@ -1,13 +1,13 @@
 import { ListItem } from '../ListItem/ListItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchContacts } from '../../redux/api';
+import { fetchContacts } from '../../redux/contacts/api';
 
 export const List = () => {
   const dispatch = useDispatch();
-  const { items, isLoading, error } = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filter);
+  const { items, isLoading, error } = useSelector(state => state.contacts.contacts);
 
+  const filter = useSelector(state => state.contacts.filter);
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
@@ -22,7 +22,7 @@ export const List = () => {
     {items.length > 0 && <ul>
       {contactArr.map(contact => (
         <li key={contact.id}>
-          <ListItem id={contact.id} name={contact.name} number={contact.phone} />
+          <ListItem id={contact.id} name={contact.name} number={contact.number} />
         </li>
       ))}
     </ul>}
