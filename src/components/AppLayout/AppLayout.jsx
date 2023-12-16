@@ -1,10 +1,12 @@
 import { NavLink, Outlet } from 'react-router-dom';
-// import { GlobalStyle } from '../GlobalStyle';
-import { FooterStyled, HeaderStyled, MainStyled, MenuListStyled, TextStyled } from './AppLayout.styled';
+import { FooterStyled, HeaderStyled, MainContainer, MainStyled, MenuListStyled, TextStyled } from './AppLayout.styled';
 import { Suspense } from 'react';
 import { useAuth } from '../../hooks';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../redux/auth/api';
+import Button from '@mui/material/Button';
+import { GlobalStyle } from '../GlobalStyle';
+
 
 export const AppLayout = () => {
   const now = new Date();
@@ -14,7 +16,7 @@ export const AppLayout = () => {
 
   return (
     <>
-      {/*<GlobalStyle />*/}
+      <GlobalStyle />
       <HeaderStyled>
         <div className='container'>
           <MenuListStyled>
@@ -33,16 +35,16 @@ export const AppLayout = () => {
           </MenuListStyled>
           {isLoggedIn && <div>
             <p>{user.email}</p>
-            <button type='button' onClick={() => dispatch(logOut())}>Log Out</button>
+            <Button variant="contained" type='button' onClick={() => dispatch(logOut())} size="small">Log Out</Button>
           </div>}
         </div>
       </HeaderStyled>
       <MainStyled>
-        <div className='container'>
+        <MainContainer className='container'>
           <Suspense fallback={<></>}>
             <Outlet />
           </Suspense>
-        </div>
+        </MainContainer>
       </MainStyled>
       <FooterStyled>
         <div className='container'>

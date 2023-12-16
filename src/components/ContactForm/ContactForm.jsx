@@ -1,6 +1,8 @@
 import { Formik, Form, Field } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { postContact } from '../../redux/contacts/api';
+import Button from '@mui/material/Button';
+import {TextField} from 'formik-material-ui';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -24,10 +26,10 @@ export const ContactForm = () => {
           alert(`${values.name} is already in contacts`);
         }
       }}>
-      <Form>
-        <Field id="name" name="name" placeholder="Name*" required />
-        <Field id="tel" name="number" type="tel" placeholder="Your tel*" required />
-        <button type="submit">Send</button>
+      <Form className='form-add-contact'>
+        <Field component={TextField} size="small" width='500px' border='success' id="name" name="name" placeholder="Name*" required />
+        <Field component={TextField} size="small" id="tel" name="number" type="tel" placeholder="Your tel*" required />
+        <Button variant="contained" type="submit" color="success" size="large">Send</Button>
       </Form>
     </Formik>
   </div>)

@@ -26,3 +26,8 @@ export const TextStyled = styled.p`
   width: fit-content;
   margin: 0 auto;
 `;
+
+export const MainContainer = styled.div`
+  margin: auto;
+  max-width: 700px;
+`;
